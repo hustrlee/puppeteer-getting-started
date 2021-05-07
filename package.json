@@ -1,0 +1,26 @@
+{
+  "name": "puppeteer-getting-started",
+  "version": "1.0.0",
+  "description": "## Puppeteer 概述",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hustrlee/puppeteer-getting-started.git"
+  },
+  "author": "Ryan Li",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hustrlee/puppeteer-getting-started/issues"
+  },
+  "homepage": "https://github.com/hustrlee/puppeteer-getting-started#readme",
+  "dependencies": {
+    "puppeteer": "^9.1.1"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.3",
+    "utf-8-validate": "^5.0.5"
+  }
+}
