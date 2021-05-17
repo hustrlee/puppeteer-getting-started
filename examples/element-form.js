@@ -42,26 +42,26 @@ const formItems =
   // 找到候选框中对应项，并点击
   // 方法 1
   const elDropdownItems = await elSelectDropdown.$$("ul li");
-  await page.waitForTimeout(100); // ???，也许是 puppeteer 的 Bug，不知道为什么
   for (let item of elDropdownItems) {
     let innerText = await item.$eval("span", node => node.innerText);
     if (innerText === data.location) {
+      await page.waitForTimeout(100); // ???，也许是 puppeteer 的 Bug，不知道为什么
       await item.click();
     }
   }
   // 方法 2
   // const items = await elSelectDropdown.$x(
-  //   `.//li[contains(., ${data.location})]`
+  //   `.//li[contains(., "${data.location}")]`
   // );
   // await page.waitForTimeout(100);
   // await items[0].click();
 
-  // 模拟设置活动时间
+  // 模拟设置“活动时间”
   const elDate = await elFormItems[2].$("input");
   await elDate.type(data.date);
   await page.keyboard.press("Enter");
 
-  // 模拟设置即时配送
+  // 模拟设置“即时配送”
   const elSwitch = await elFormItems[3].$("div.el-switch");
   // 判断 Switch 的现在状态
   let switchStatus = await (
@@ -73,6 +73,37 @@ const formItems =
   if (switchStatus !== data.instant) {
     await elSwitch.click();
   }
+
+  // 模拟设置“活动性质”
+  const elCheckboxOptions = await elFormItems[4].$$("label.el-checkbox");
+  for (let option of elCheckboxOptions) {
+    // 获取 Checkbox 的对应值
+    let optionValue = await (
+      await option.getProperty("textContent")
+    ).jsonValue();
+
+    // 判断 Checkbox 的状态
+    let optionStatus = await (
+      await option.getProperty("className")
+    ).jsonValue();
+
+    if (
+      !optionStatus.includes("is-checked") &&
+      data.property.includes(optionValue.trim())
+    ) {
+      await page.waitForTimeout(100);
+      await option.click();
+    }
+  }
+
+  // 模拟设置“特殊资源”
+  const elRadios = await elFormItems[5].$x(
+    `.//label[contains(., "${data.resource}")]`
+  );
+  await page.waitForTimeout(100);
+  await elRadios[0].click();
+
+  // 模拟输入“活动形式”
 
   // 截屏，并退出浏览器
   await page.screenshot({ path: "element-form.png" });
