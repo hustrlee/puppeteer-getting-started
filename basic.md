@@ -51,5 +51,46 @@ Puppeteer 的层次结构直接对应了浏览器的层次结构：
 
 #### 相关 API
 
+##### `puppeteer.launch([options])`
 
+- 功能描述：启动浏览器，并返回一个 `Browser` 实例。
+
+- 常用 `options`：
+  - `headless` <boolean> 是否以无头模式运行浏览器，默认是 `true`。
+  - `executablePath` <string> 可运行 Chromium 或 Chrome 可执行文件的路径，而不是绑定的 Chromium。
+  - `defaultViewport` <Object> 为每个页面设置一个默认的视口大小。
+    - `width` <number> 页面宽度像素，默认是 800。
+    - `height` <number> 页面高度像素，默认是 600。
+
+
+
+##### `browser.newPage()`
+
+- 功能描述：在默认的浏览器上下文中创建一个 `Page` 实例。
+
+
+
+##### `page.goto(url, [options])`
+
+- 功能描述：跳转到 `url`，如果有多次跳转，将一直持续到最后一跳。
+- 常用 `options`：
+  - `waitUntil` <string> | Array <string> 满足什么条件时认为页面跳转完成，默认是 `load` 事件触发时。指定事件数组时，所有事件都被触发才认为是跳转完成。事件包括：
+    - `load` - 页面的 `load` 事件触发时
+    - `domcontentloaded` - 页面的 `DOMContentLoaded` 事件触发时
+    - `networkidle0` - 不再有网络连接时（至少 500ms 后触发）
+    - `networkidle2` - 只有 2 个网络连接时（至少 500ms 后触发）
+
+
+
+### 获取待输入表单项的 DOM 节点
+
+源文件 `element-form.js` 片段：
+
+```javascript
+const formItemsSelector =
+  "#dian-xing-biao-dan + p + div > div.source > div > form.el-form > div.el-form-item";
+
+// 找到需要提交的 Form
+const elFormItems = await page.$$(formItemsSelector);
+```
 
