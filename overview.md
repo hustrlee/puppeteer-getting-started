@@ -69,7 +69,7 @@ node examples/first-try.js
 
 ### 无头模式（headless）
 
-Puppeteer 默认运行 Chromium 的“无头模式”，可以通过设置，使用完全版本的 Chromium。
+Puppeteer 默认运行 Chromium 的“无头模式”。可以通过设置，使用完全版本的 Chromium，这对调试 Puppeteer 程序很有用。
 
 ```javascript
 const browser = await puppeteer.launch({ headless: false }); // defalut is true
