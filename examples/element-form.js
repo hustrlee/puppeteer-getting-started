@@ -106,7 +106,7 @@ const formItemsSelector =
   await elSubmit[0].click();
 
   // 原因不明，不延时则会产生一个“JSHandle@error“
-  await page.waitForTimeout(100);
+  await page.waitForTimeout(500);
 
   // 截屏，并退出浏览器
   await page.screenshot({ path: "element-form.png" });
