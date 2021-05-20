@@ -1,6 +1,6 @@
 # Puppeteer 概述
 
-[TOC]
+
 
 ## 简介
 

@@ -1,4 +1,4 @@
-# Puppeteer 基础
+# 操作页面元素
 
 模拟提交表单是自动化测试中最常用的功能，下面通过几个示例的分析来介绍 Puppeteer 的常用功能。
 
@@ -13,4 +13,12 @@
 - [模拟文本框输入](input-textbox.md)
 - [模拟选择框输入](input-select.md)
 
-- 模拟
+
+
+
+## 上传文件
+
+以 ”[Pose Image 图床](https://postimages.org/)“进行演示。
+
+- [上传文件](upload.md)
+
