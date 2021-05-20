@@ -30,12 +30,12 @@ const elFormItems = await page.$$(formItemsSelector);
 
 ## selector（选择器）入门
 
-这里的选择器指的是：CSS 选择器。相关的文档可以参考：
+这里的选择器指的是：CSS 选择器。相关的文档：
 
 - [CSS 选择器 - MDN Web Docs](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Selectors)
 - [CSS 选择器参考手册 - W3school](https://www.w3school.com.cn/cssref/css_selectors.asp)
 
-##### 常见选择器
+**常见选择器**
 
 | 选择器         | 用法                | 描述                                                         |
 | -------------- | ------------------- | ------------------------------------------------------------ |
