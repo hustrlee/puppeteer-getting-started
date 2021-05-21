@@ -15,6 +15,14 @@
 
 
 
+## 操控滑块
+
+以“[Element-UI 滑块 - 基础用法](https://element.eleme.cn/#/zh-CN/component/slider)”进行演示。
+
+- [操控滑块](slider.md)
+
+
+
 
 ## 上传文件
 
