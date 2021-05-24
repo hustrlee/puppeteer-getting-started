@@ -12,16 +12,27 @@ const sliderPosition = 0.63;
   await page.goto(url, { waitUntil: "networkidle2" });
 
   const elSlider = await page.$(sliderSelector);
+  const elSliderButton = await page.$(`${sliderSelector} .el-slider__button`);
 
-  // 获取滑块条的位置及大小
+  // 获取滑块条及滑块的位置及大小
   const sliderBox = await elSlider.boundingBox();
-  // 计算鼠标点击的位置
-  const clickPositon = {
-    x: sliderBox.x + sliderBox.width * sliderPosition,
-    y: sliderBox.y + sliderBox.height / 2
-  };
-  // 将鼠标移到指定位置并click
-  await page.mouse.click(clickPositon.x, clickPositon.y);
+  const sliderButtonBox = await elSliderButton.boundingBox();
+
+  // 将鼠标移动到滑块的中心
+  await page.mouse.move(
+    sliderButtonBox.x + sliderButtonBox.width / 2,
+    sliderButtonBox.y + sliderButtonBox.height / 2
+  );
+  // 按下鼠标
+  await page.mouse.down();
+  // 拖动滑块
+  await page.mouse.move(
+    sliderBox.x + sliderBox.width * sliderPosition,
+    sliderBox.y + sliderBox.height / 2,
+    { steps: 100 }
+  );
+  // 释放鼠标
+  await page.mouse.up();
 
   await page.screenshot({ path: "slider.png" });
   await browser.close();
