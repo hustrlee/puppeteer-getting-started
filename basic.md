@@ -12,6 +12,11 @@
 - [获取 DOM 节点](locate-element.md)
 - [模拟文本框输入](input-textbox.md)
 - [模拟选择框输入](input-select.md)
+- [模拟开关输入](input-switch.md)
+- [模拟复选框输入](input-checkbox.md)
+- [模拟单选框输入](input-radio.md)
+- [模拟文本域输入](input-textarea.md)
+- [获取控制台信息](console.md)
 
 
 
