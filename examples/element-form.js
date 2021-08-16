@@ -9,7 +9,7 @@ const data = {
   instant: true,
   property: ["地推活动", "线下主题活动"],
   resource: "线下场地免费",
-  activityForm: "1. 演员表演\n2. 现场抽奖"
+  activityForm: "1. 演员表演\n2. 现场抽奖",
 };
 
 const formItemsSelector =
@@ -18,11 +18,11 @@ const formItemsSelector =
 (async () => {
   const browser = await puppeteer.launch({
     headless: false, // 为了演示，不使用 headless 模式
-    defaultViewport: { width: 1920, height: 1080 }
+    defaultViewport: { width: 1920, height: 1080 },
   });
 
   const page = await browser.newPage();
-  page.on("console", msg => {
+  page.on("console", (msg) => {
     console.log(msg.text());
   });
   await page.goto(url, { waitUntil: "networkidle2" });
@@ -106,7 +106,7 @@ const formItemsSelector =
   await elSubmit[0].click();
 
   // 原因不明，不延时则会产生一个“JSHandle@error“
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(1000);
 
   // 截屏，并退出浏览器
   await page.screenshot({ path: "element-form.png" });
