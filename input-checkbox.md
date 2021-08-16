@@ -11,12 +11,10 @@ for (let option of elCheckboxOptions) {
   ).includes("is-checked");
 
   // 获取 Checkbox Option 的对应值
-  let optionValue = await (
-    await option.getProperty("textContent")
-  ).jsonValue();
+  let optionValue = await (await option.getProperty("textContent")).jsonValue();
 
   if (optionStatus !== data.property.includes(optionValue.trim())) {
-    await page.waitForTimeout(100);
+    await page.waitFor(100);
     await option.click();
   }
 }

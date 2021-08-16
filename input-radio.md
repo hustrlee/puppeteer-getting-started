@@ -6,7 +6,7 @@
 const elRadios = await elFormItems[5].$x(
   `.//label[contains(., "${data.resource}")]`
 );
-await page.waitForTimeout(100);
+await page.waitFor(100);
 await elRadios[0].click();
 ```
 

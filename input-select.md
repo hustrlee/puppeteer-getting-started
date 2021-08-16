@@ -3,19 +3,19 @@
 源文件 `element-form.js` 片段：
 
 ```javascript
-  // 模拟设置“活动区域”
-  const elSelect = await elFormItems[1].$("div.el-select");
-  // 模拟点击，等待候选框出现
-  await elSelect.click({ delay: 100 });
-  const elSelectDropdown = await page.waitForSelector(
-    "div.el-select-dropdown:not([style*=display])"
-  );
-  // 找到候选框中对应项，并点击
-  const elSelectDropdownItems = await elSelectDropdown.$x(
-    `.//li[contains(., "${data.location}")]`
-  );
-  await page.waitForTimeout(100);
-  await elSelectDropdownItems[0].click();
+// 模拟设置“活动区域”
+const elSelect = await elFormItems[1].$("div.el-select");
+// 模拟点击，等待候选框出现
+await elSelect.click({ delay: 100 });
+const elSelectDropdown = await page.waitForSelector(
+  "div.el-select-dropdown:not([style*=display])"
+);
+// 找到候选框中对应项，并点击
+const elSelectDropdownItems = await elSelectDropdown.$x(
+  `.//li[contains(., "${data.location}")]`
+);
+await page.waitFor(100);
+await elSelectDropdownItems[0].click();
 ```
 
 Puppeteer 可以完全模拟人的操作过程来完成选择框的输入。模拟流程如下：
@@ -27,8 +27,6 @@ graph LR
   s3-->s4["点击符合条件的项"]
 ```
 
-
-
 ## 相关 API
 
 #### `elementHandle.click([options])`
@@ -38,31 +36,23 @@ graph LR
   - `clickCount` `<number>` 点击的次数，默认是 1。
   - `deley` `<number>` `mousedown` 和 `mouseup` 之间的等待时间，默认是 0。
 
-
-
 #### `page.waitForSelector(selector[, options])`
 
 - 功能描述：等待 `selector` 指定的 DOM 元素出现。由于很多 DOM 是动态构造的，使用此方法可以等待它出现后再执行后续操作。
 - 常用 `options`：
   - 参数 `visible` 和 `hidden` 似乎没有作用，可以用**伪类**和**属性选择器**的组合来取代这两个参数。
 
-
-
 #### `elementHandle.$x(xPath)`
 
 - 功能描述：通过 `xPath` 来搜索所有的匹配的元素，返回 `Array <ElementHandle>`。如果没有匹配元素，则返回 `[]`。
 
-
-
-#### `page.waitForTimeout(timeout)`
+#### `page.waitFor(timeout)`
 
 - 功能描述：等待 `timeout` 毫秒后，完成 `Promise.resovle`
 
-> Puppeteer 在执行中有时会需要插入一些 `waitForTimeout`，否则会报错，尚不知道原因。
+> Puppeteer 在执行中有时会需要插入一些 `waitFor`，否则会报错，尚不知道原因。
 >
-> 如果单步执行正确，但是正常执行报错，则说明需要插入 `waitForTimeout`。
-
-
+> 如果单步执行正确，但是正常执行报错，则说明需要插入 `waitFor`。
 
 ## XPath 入门
 
@@ -82,4 +72,3 @@ XPath 是一门在 XML 文档中查找信息的语言。DevTools 可以使用 XP
 | .        | 选取当前节点。                                             |
 | ..       | 选取当前节点的父节点。                                     |
 | @        | 选取属性。                                                 |
-
