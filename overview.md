@@ -26,6 +26,8 @@ npm install puppeteer
 # 安装可选包 bufferutil 和 utf-8-validate 来加速 ws，该步骤可省略
 npm install --save-optional bufferutil
 npm install --save-optional utf-8-validate
+# 有时 puppeteer 不会自动安装 chromium，需要手动安装
+node node_modules/puppeteer/install.js
 ```
 
 > 安装 `puppeteer` 时，会自动从 Google 安装 Chromium 作为浏览器，在国内的网络环境下，需要使用“淘宝镜像”。
